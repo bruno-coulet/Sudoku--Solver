@@ -42,3 +42,16 @@ class BruteForce(SudokuSolver):
                 row = [char for char in line.strip()]
                 sudoku.append(row)
         return sudoku
+    
+    
+brute_force = BruteForce()
+filename = 'sudoku_random_generated.txt'
+sudoku = brute_force.read_sudoku(filename)
+
+if brute_force.verification(sudoku):
+    print("Good grid")
+else:
+    nom_fichier = "sudoku_random_generated.txt"
+
+    if os.path.exists(nom_fichier):
+        os.remove(nom_fichier)
