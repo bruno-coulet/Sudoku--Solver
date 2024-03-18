@@ -33,3 +33,12 @@ class BruteForce(SudokuSolver):
                                 return False
                             region_nums.add(sudoku[i+k][j+l])
         return True
+    
+    def read_sudoku(self,filename):
+        # sourcery skip: identity-comprehension
+        sudoku = []
+        with open(filename, 'r') as file:
+            for line in file:
+                row = [char for char in line.strip()]
+                sudoku.append(row)
+        return sudoku
