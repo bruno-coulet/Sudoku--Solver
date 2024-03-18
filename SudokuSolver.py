@@ -9,3 +9,11 @@ class SudokuSolver:
             for j in range(9):
                 if sudoku[i][j] == '_':
                     sudoku[i][j] = str(random.randint(1, 9))
+    # Load the sudoku from a file
+    def read_sudoku(self, filename):
+        sudoku = []
+        with open(filename, 'r') as file:
+            for line in file:
+                row = list(line.strip())
+                sudoku.append(row)
+        return sudoku
