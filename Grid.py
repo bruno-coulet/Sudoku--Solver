@@ -13,30 +13,30 @@ class Grid:
     returns : la grille (liste de listes)
     '''
     def convert_into_grid(self, text):
-        # Initialisation d'une grille 9x9 remplie de zéros.
+        # Initiate a 9x9 grid filled with zeros
         grid = [[0]*9 for _ in range(9)]
-        # Itération sur chaque ligne de la chaîne de texte après l'avoir divisée par le saut de ligne.
+        # Iterates every line of the string
         for i, ligne in enumerate(text.split('\n')):
-            #  Itération sur chaque caractère de la ligne.
+            #  Iterates every element of the line.
             for j, number in enumerate(ligne):
                 if number.isdigit():
-                    # assignation à la position correspondante dans la grille.
+                    # assigns the number to the current position in the grid
                     grid[i][j] = int(number)
         return grid
 
     def display_grid(self):
         print()
-        #  Itération sur les lignes de la grille (de 0 à 8 inclus) -> Séparation horizontale
+        #  Iterates the lines of the grid (from 0 to 8 included) -> Horizontal separation
         for i in range(9):
             if i % 3 == 0 and i != 0:
                 print("-" * 21)
-            #  Itération sur les colonnes de la grille (de 0 à 8 inclus) -> Séparation verticale
+            #  Iterates the colunns of the grid (from 0 to 8 included) -> Vertical separation
             for j in range(9):
                 if j % 3 == 0 and j != 0:
                     print("|", end=" ")
-                # Affichage du nombre situé à la position (i, j) de la grille.
+                # display the numbera t the position (i, j) in the grid.
                 print(self.grid[i][j], end=" ")
-            # Passe à la ligne suivante
+            # skips to next line
             print()
         print()
 
