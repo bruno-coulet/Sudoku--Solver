@@ -10,7 +10,7 @@ class SudokuSolver:
                 if sudoku[i][j] == '_':
                     sudoku[i][j] = str(random.randint(1, 9))
     # Load the sudoku from a file
-    def read_sudoku(self, filename):
+    def read_file(self, filename):
         sudoku = []
         with open(filename, 'r') as file:
             for line in file:
@@ -28,11 +28,11 @@ solver = SudokuSolver()
 
 # Load the sudoku from a file
 filename = 'sss.txt'
-sudoku = solver.load_sudoku_from_file(filename)
+sudoku = solver.read_file(filename)
 
 # Replace underscores with random numbers
-solver.replace_underscore_with_random(sudoku)
+solver.random_replace(sudoku)
 
 # Save the modified sudoku in a new file
 new_filename = 'sudoku_random_generated.txt'
-solver.save_sudoku_to_file(new_filename, sudoku)
+solver.save_change(new_filename, sudoku)
