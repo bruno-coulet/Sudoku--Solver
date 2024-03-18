@@ -17,3 +17,8 @@ class SudokuSolver:
                 row = list(line.strip())
                 sudoku.append(row)
         return sudoku
+    # Save the sudoku to a file
+    def save_change(self, filename, sudoku):
+        with open(filename, 'w') as file:
+            for row in sudoku:
+                file.write(''.join(row) + '\n')
