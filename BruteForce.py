@@ -4,3 +4,32 @@ from SudokuSolver import SudokuSolver
 class BruteForce(SudokuSolver):
     def __init__(self):
         SudokuSolver.__init__(self)
+
+    def verification(self,sudoku):
+        # Vérification des lignes et des colonnes
+        for i in range(9):
+            row_nums = set()
+            col_nums = set()
+            for j in range(9):
+                # Vérification des lignes
+                if sudoku[i][j] != '_':
+                    if sudoku[i][j] in row_nums:
+                        return False
+                    row_nums.add(sudoku[i][j])
+                # Vérification des colonnes
+                if sudoku[j][i] != '_':
+                    if sudoku[j][i] in col_nums:
+                        return False
+                    col_nums.add(sudoku[j][i])
+
+        # Vérification des régions
+        for i in range(0, 9, 3):
+            for j in range(0, 9, 3):
+                region_nums = set()
+                for k in range(3):
+                    for l in range(3):
+                        if sudoku[i+k][j+l] != '_':
+                            if sudoku[i+k][j+l] in region_nums:
+                                return False
+                            region_nums.add(sudoku[i+k][j+l])
+        return True
