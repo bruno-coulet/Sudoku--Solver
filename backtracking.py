@@ -1,40 +1,11 @@
 import os
+from Grid import Grid
 
-# The Grid class represents a Sudoku grid.
-class Sudoku:
-    def __init__(self):
-        pass
-
-    # This method reads a file from the 'input' directory and returns its content as a grid.
-    def read_file(self, file_name):
-        with open(os.path.join('input', file_name), 'r') as f:
-            data = f.read()
-        return self.convert_into_grid(data)
-
-    # This method converts a text representation of a Sudoku grid into a 2D list.
-    def convert_into_grid(self, text):
-        grid = [[0]*9 for _ in range(9)] 
-        for i, line in enumerate(text.split('\n')):
-            for j, number in enumerate(line):
-                if number.isdigit():
-                    grid[i][j] = int(number)  
-        return grid
-
-    # This method displays a Sudoku grid.
-    def display_grid(self, grid):
-        for i in range(9):
-            if i % 3 == 0 and i != 0:
-                print('-'*21)
-            for j in range(9):
-                if j % 3 == 0 and j != 0:
-                    print('|', end='')
-                print(grid[i][j], end=' ')
-            print()
 
 # The Solver class is used to solve a Sudoku puzzle.
-class Solver(Sudoku):
+class Solver(Grid):
     def __init__(self):
-        Sudoku.__init__(self)
+        Grid.__init__(self)
 
     # This method checks if a number can be placed in a specific spot on the grid.
     def is_valid(self, sudoku, row, col, num):
