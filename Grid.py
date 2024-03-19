@@ -1,10 +1,9 @@
 class Grid:
-    def __init__(self, file_name):
-        self.file_name = file_name
-        self.grid = self.read_file()
+    def __init__(self):
+        pass
 
-    def read_file(self):
-        with open(self.file_name, 'r') as f:
+    def read_file(self,file_name):
+        with open(file_name, 'r') as f:
             data = f.read()
         return self.convert_into_grid(data)
 
@@ -24,7 +23,8 @@ class Grid:
                     grid[i][j] = int(number)
         return grid
 
-    def display_grid(self):
+    def display_grid(self,file_name):
+        self.grid = self.read_file(file_name)
         print()
         #  Iterates the lines of the grid (from 0 to 8 included) -> Horizontal separation
         for i in range(9):
@@ -41,10 +41,3 @@ class Grid:
         print()
 
 
-def main():
-    file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
-    solver = Grid(f"input/{file_name}.txt")
-    solver.display_grid()
-
-if __name__ == "__main__":
-    main()
