@@ -1,7 +1,7 @@
 import os
 
 # The Grid class represents a Sudoku grid.
-class Grid:
+class Sudoku:
     def __init__(self):
         pass
 
@@ -32,9 +32,9 @@ class Grid:
             print()
 
 # The Solver class is used to solve a Sudoku puzzle.
-class Solver(Grid):
+class Solver(Sudoku):
     def __init__(self):
-        Grid.__init__(self)
+        Sudoku.__init__(self)
 
     # This method checks if a number can be placed in a specific spot on the grid.
     def is_valid(self, sudoku, row, col, num):
