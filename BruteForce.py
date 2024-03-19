@@ -8,19 +8,21 @@ class BruteForce(SudokuSolver):
     def verification(self,sudoku):
         # Vérification des lignes et des colonnes
         for i in range(9):
-            row_nums = set()
-            col_nums = set()
+            row = set()
+            col = set()
             for j in range(9):
+                
                 # Vérification des lignes
                 if sudoku[i][j] != '_':
-                    if sudoku[i][j] in row_nums:
+                    if sudoku[i][j] in row:
                         return False
-                    row_nums.add(sudoku[i][j])
+                    row.add(sudoku[i][j])
+                    
                 # Vérification des colonnes
                 if sudoku[j][i] != '_':
-                    if sudoku[j][i] in col_nums:
+                    if sudoku[j][i] in col:
                         return False
-                    col_nums.add(sudoku[j][i])
+                    col.add(sudoku[j][i])
 
         # Vérification des régions
         for i in range(0, 9, 3):
@@ -43,7 +45,10 @@ class BruteForce(SudokuSolver):
                 sudoku.append(row)
         return sudoku
     
-    
+    def again(self):
+        print("ok")
+        self.run()
+        
 brute_force = BruteForce()
 filename = 'sudoku_random_generated.txt'
 sudoku = brute_force.read_sudoku(filename)
@@ -55,3 +60,6 @@ else:
 
     if os.path.exists(nom_fichier):
         os.remove(nom_fichier)
+    # brute_force.run()
+    print("Bad grid")
+

@@ -22,17 +22,19 @@ class SudokuSolver:
         with open(filename, 'w') as file:
             for row in sudoku:
                 file.write(''.join(row) + '\n')
+    def run(self):
+        filename = 'input\sudoku.txt'
+        sudoku = self.read_file(filename)
+
+        # Replace underscores with random numbers
+        self.random_replace(sudoku)
+
+        # Save the modified sudoku in a new file
+        new_filename = 'sudoku_random_generated.txt'
+        self.save_change(new_filename, sudoku)
 
 # Create an instance of SudokuSolver
 solver = SudokuSolver()
 
+solver.run()
 # Load the sudoku from a file
-filename = 'sss.txt'
-sudoku = solver.read_file(filename)
-
-# Replace underscores with random numbers
-solver.random_replace(sudoku)
-
-# Save the modified sudoku in a new file
-new_filename = 'sudoku_random_generated.txt'
-solver.save_change(new_filename, sudoku)
