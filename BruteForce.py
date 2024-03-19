@@ -49,10 +49,10 @@ class BruteForce(SudokuSolver,Grid):
     
     def begin(self,new_filename):
         self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
-        # self.solver = Grid(f"input/{self.file_name}.txt")
+        self.display_grid(f"input/{self.file_name}.txt")
         self.run(f"input/{self.file_name}.txt")
         self.display_grid(new_filename)
-        
+
 brute_force = BruteForce()
 new_filename = 'sudoku_random_generated.txt'
 
