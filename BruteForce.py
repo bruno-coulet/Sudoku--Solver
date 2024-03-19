@@ -1,9 +1,11 @@
 import os
 from SudokuSolver import SudokuSolver
+from Grid import Grid
 
-class BruteForce(SudokuSolver):
+class BruteForce(SudokuSolver,Grid):
     def __init__(self):
         SudokuSolver.__init__(self)
+        Grid.__init__(self)
 
     def verification(self,sudoku):
         # Vérification des lignes et des colonnes
@@ -45,13 +47,17 @@ class BruteForce(SudokuSolver):
                 sudoku.append(row)
         return sudoku
     
-    def again(self):
-        print("ok")
-        self.run()
+    def begin(self,new_filename):
+        self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
+        # self.solver = Grid(f"input/{self.file_name}.txt")
+        self.run(f"input/{self.file_name}.txt")
+        self.display_grid(new_filename)
         
 brute_force = BruteForce()
-filename = 'sudoku_random_generated.txt'
-sudoku = brute_force.read_sudoku(filename)
+new_filename = 'sudoku_random_generated.txt'
+
+brute_force.begin(new_filename)
+sudoku = brute_force.read_sudoku(new_filename)
 
 if brute_force.verification(sudoku):
     print("Good grid")
@@ -60,6 +66,5 @@ else:
 
     if os.path.exists(nom_fichier):
         os.remove(nom_fichier)
-    # brute_force.run()
     print("Bad grid")
 
