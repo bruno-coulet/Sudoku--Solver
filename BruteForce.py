@@ -46,25 +46,23 @@ class BruteForce(SudokuSolver,Grid):
                 row = [char for char in line.strip()]
                 sudoku.append(row)
         return sudoku
-    
-    def begin(self,new_filename):
+
+    def begin(self):
+        new_filename = 'sudoku_random_generated.txt'
         self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
         self.display_grid(f"input/{self.file_name}.txt")
-        self.run(f"input/{self.file_name}.txt")
+        self.run_solver(f"input/{self.file_name}.txt")
         self.display_grid(new_filename)
+        sudoku = self.read_sudoku(new_filename)
+        if self.verification(sudoku):
+            print("Good grid")
+        else:
+            file_remove = "sudoku_random_generated.txt"
 
-brute_force = BruteForce()
-new_filename = 'sudoku_random_generated.txt'
+            if os.path.exists(file_remove):
+                os.remove(file_remove)
+            print("Bad grid")
 
-brute_force.begin(new_filename)
-sudoku = brute_force.read_sudoku(new_filename)
 
-if brute_force.verification(sudoku):
-    print("Good grid")
-else:
-    nom_fichier = "sudoku_random_generated.txt"
 
-    if os.path.exists(nom_fichier):
-        os.remove(nom_fichier)
-    print("Bad grid")
 

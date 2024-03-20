@@ -26,7 +26,7 @@ class SudokuSolver:
             for row in sudoku:
                 file.write(''.join(row) + '\n')
                 
-    def run(self,filename):
+    def run_solver(self,filename):
         sudoku = self.read_file(filename)
         # Replace underscores with random numbers
         self.random_replace(sudoku)
