@@ -1,4 +1,4 @@
-class Grid:
+class BGrid:
     def __init__(self, file_name):
         self.file_name = file_name
         self.grid = self.read_file()
@@ -24,27 +24,33 @@ class Grid:
                     grid[i][j] = int(number)
         return grid
 
+
     def display_grid(self):
         print()
+        grid_str = ""
         #  Iterates the lines of the grid (from 0 to 8 included) -> Horizontal separation
         for i in range(9):
             if i % 3 == 0 and i != 0:
-                print("-" * 21)
+                grid_str += "-" * 21 + "\n"
             #  Iterates the colunns of the grid (from 0 to 8 included) -> Vertical separation
             for j in range(9):
                 if j % 3 == 0 and j != 0:
-                    print("|", end=" ")
-                # display the numbera t the position (i, j) in the grid.
-                print(self.grid[i][j], end=" ")
+                    grid_str += "| "
+                # display the number at the position (i, j) in the grid.
+                grid_str += str(self.grid[i][j]) + " "
             # skips to next line
-            print()
-        print()
+            grid_str += "\n"
+        return grid_str
 
 
 def main():
     file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
-    solver = Grid(f"input/{file_name}.txt")
-    solver.display_grid()
+    grid = BGrid(f"input/{file_name}.txt")
+    grid_display = grid.display_grid()
+    print(grid_display)
+
+
+    return grid_display
 
 if __name__ == "__main__":
     main()

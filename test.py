@@ -1,4 +1,4 @@
-class Grid:
+class BGrid:
     def __init__(self, file_name):
         self.file_name = file_name
         self.grid = self.read_file()
@@ -25,26 +25,47 @@ class Grid:
         return grid
 
     def display_grid(self):
+        grid_string = ""
         print()
         #  Iterates the lines of the grid (from 0 to 8 included) -> Horizontal separation
         for i in range(9):
             if i % 3 == 0 and i != 0:
-                print("-" * 21)
-            #  Iterates the colunns of the grid (from 0 to 8 included) -> Vertical separation
+                grid_string += "-" * 21 + "\n"
+            #  Iterates the columns of the grid (from 0 to 8 included) -> Vertical separation
             for j in range(9):
                 if j % 3 == 0 and j != 0:
-                    print("|", end=" ")
-                # display the numbera t the position (i, j) in the grid.
-                print(self.grid[i][j], end=" ")
+                    grid_string += "| "
+                # display the number at the position (i, j) in the grid.
+                grid_string += str(self.grid[i][j]) + " "
             # skips to next line
+            grid_string += "\n"
             print()
         print()
+        return grid_string
+
+    def write_to_python_file(self, output_file):
+        with open(output_file, 'w') as f:
+            f.write("grid = [\n")
+            for row in self.grid:
+                f.write(f"    {row},\n")
+            f.write("]")
+            f.write("\n\n")
+            f.write("def get_grid():\n")
+            f.write("    return grid")
 
 
 def main():
     file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
-    solver = Grid(f"input/{file_name}.txt")
-    solver.display_grid()
+    grid = BGrid(f"input/{file_name}.txt")
+    grid_display = grid.display_grid()
+    print(grid_display)
+
+    # Ecriture de la grille dans un fichier
+    output_file = "grid_output.py"
+    grid.write_to_python_file(output_file)
+    print(f"Grille écrite dans le fichier {output_file}")
+
+    return grid_display
 
 if __name__ == "__main__":
     main()
