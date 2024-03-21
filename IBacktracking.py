@@ -1,4 +1,4 @@
-# import time
+import time
 from Files import Files
 from Grid import Grid
 
@@ -56,14 +56,14 @@ class SudokuSolver(Grid,Files):
         return False
 
     def run_solver(self, filename):
-        # start_time = time.time()
+        start_time = time.time()
 
         sudoku = Files.read_file(filename)
         if self.solve_sudoku(sudoku):
             Files.save_change('sudoku_solution.txt', sudoku)
 
-        # end_time = time.time()  # Stop time
-        # self.solver_time = end_time - start_time # Calcul time
+        end_time = time.time()  # Stop time
+        self.solver_time = end_time - start_time # Calcul time
 
     def begin(self):
         print()
@@ -71,7 +71,7 @@ class SudokuSolver(Grid,Files):
         self.display_grid(f"input/{self.file_name}.txt")
         self.run_solver(f"input/{self.file_name}.txt")
         self.display_grid('sudoku_solution.txt')
-        # print("Time to solver :", self.solver_time, "seconds")
+        print("Time to solver :", self.solver_time, "seconds")
         print()
 
 solver = SudokuSolver()
