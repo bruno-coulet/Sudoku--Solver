@@ -1,4 +1,5 @@
 from Grid import Grid
+import time
 
 # The Solver class is used to solve a Sudoku puzzle.
 class Solver(Grid):
@@ -70,8 +71,12 @@ class Solver(Grid):
         self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
         sudoku = self.read_file(f"{self.file_name}.txt")
         self.display_grid(sudoku)
+
+        start_time = time.time()
+
         if self.solve(sudoku):
-            print("Sudoku résolu avec succès !")
+            end_time = time.time()
+            print(f"Sudoku résolu avec succès en {end_time - start_time} secondes !")
             self.display_grid(sudoku)
         else:
             print("Pas de solution trouvée.")
