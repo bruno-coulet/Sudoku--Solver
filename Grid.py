@@ -3,7 +3,7 @@ import os
 class Grid:
     def __init__(self):
         pass
-    def read_file(self,file_name):
+    def read_file(self,file_name=None):
         with open(os.path.join('input', file_name), 'r') as f:
             data = f.read()
         return self.convert_into_grid(data)
@@ -22,8 +22,7 @@ class Grid:
                     # assigns the number to the current position in the grid
                     grid[i][j] = int(number)
         return grid
-    def display_grid(self,file_name):
-        self.grid = self.read_file(file_name)
+    def display_grid(self, grid):
         print()
         #  Iterates the lines of the grid (from 0 to 8 included) -> Horizontal separation
         for i in range(9):
@@ -34,7 +33,7 @@ class Grid:
                 if j % 3 == 0 and j != 0:
                     print("|", end=" ")
                 # display the numbera t the position (i, j) in the grid.
-                print(self.grid[i][j], end=" ")
+                print(grid[i][j], end=" ")
             # skips to next line
             print()
         print()
