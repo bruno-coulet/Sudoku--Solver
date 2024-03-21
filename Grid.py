@@ -4,13 +4,14 @@ class Grid:
     def __init__(self):
         pass
     def read_file(self,file_name):
-        with open(os.path.join('input', file_name), 'r') as f:
+        with open(os.path.join(file_name), 'r') as f:
             data = f.read()
         return self.convert_into_grid(data)
     '''Converti le fichier .txt en chaine de caractères
     arg : str
     returns : la grille (liste de listes)
     '''
+    
     def convert_into_grid(self, text):
         # Initiate a 9x9 grid filled with zeros
         grid = [[0]*9 for _ in range(9)]
@@ -22,13 +23,16 @@ class Grid:
                     # assigns the number to the current position in the grid
                     grid[i][j] = int(number)
         return grid
+
     def display_grid(self,file_name):
         self.grid = self.read_file(file_name)
         print()
+        
         #  Iterates the lines of the grid (from 0 to 8 included) -> Horizontal separation
         for i in range(9):
             if i % 3 == 0 and i != 0:
                 print("-" * 21)
+                
             #  Iterates the colunns of the grid (from 0 to 8 included) -> Vertical separation
             for j in range(9):
                 if j % 3 == 0 and j != 0:
