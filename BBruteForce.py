@@ -1,85 +1,99 @@
 from BGrid import BGrid
 import random
+import time
 
-class Random(BGrid):
+class Random_fill_and_check(BGrid):
     def __init__(self, file_name):
         super().__init__(file_name)
 
-    '''Remplace les 0 par un chiffre aléatoire entre 1 et 9 inclus'''
-    def generate_random_sudoku(self):
-        # Obtient la grille sous forme de chaîne de caractères (grid_str)
+    '''Replace the 0 with a random number between 1 and 9 (inclusive)'''
+    def fill(self):
+        #  Get the grid as a string (grid_str)
         grid_str = self.display_grid()
-        # Convertit la chaîne de grille en une liste de lignes
+        # Convert the grid string into a list of lines
         lines = grid_str.strip().split("\n")
-        # Remplace les zéros par des entiers aléatoires entre 1 et 9 inclus
+        # Replace 0s with random integers between 1 and 9 (inclusive)
         for i in range(len(lines)):
             lines[i] = "".join(str(random.randint(1, 9)) if char == "0" else char for char in lines[i])
 
-        # Reconstruit la chaîne de grille avec les entiers aléatoires
+        # Reconstruct the grid string with random integers
         random_grid_str = "\n".join(lines)
         return random_grid_str
 
+    '''Check the result. Return False if there are duplicates'''
     def check(self):
         for i in range(9):
-            # i = indice des lignes de la grille
-            # self.grid[i][j] = chaque élément de la ligne
+            # i = index of the grid rows
+            # self.grid[i][j] = each element in the row
             row = [self.grid[i][j] for j in range(9)]
-            # converti la liste en un ensemble (set)
-            # comparant la longueur de l'ensemble avec 9
-            # Si la longueur de l'ensemble est != 9, il y a au moins un doublon dans la ligne i
+            # convert the list into a set
+            # compare the length of the set with 9
+            # If the length of the set is != 9, there is at least one duplicate in row i
             if len(set(row)) != 9:
                 return False
-            # self.grid[j][i] = chaque élément de la colonne
+            # self.grid[j][i] = each element in the column
             column = [self.grid[j][i] for j in range(9)]
             if len(set(column)) != 9:
                 return False
             
-        # Vérification des doublons dans les régions
-        for i in range(0, 9, 3):  # lignes 0, 3 et 6
-            for j in range(0, 9, 3):  # colonnes 0, 3 et 6
+        # Checking for duplicates in the regions
+        for i in range(0, 9, 3):  # rows 0, 3, and 6
+            for j in range(0, 9, 3):  # columns 0, 3, and 6
                 region = []
-                # Boucle pour ajouter les nombres de la région à une liste
+                # Loop to add numbers from the region to a list
                 for x in range(3):
                     for y in range(3):
                         region.append(self.grid[i + x][j + y])
                 if len(set(region)) != 9:
-                    return False  # Il y a un doublon dans la région
+                    return False  # There is a duplicate in the region
 
-        return True  # Aucun doublon trouvé dans toutes les lignes et colonnes
+        return True  # No duplicates found in all rows and columns
+    
+    '''Check if there are any zeros'''
+    def has_zeros(self):
+        for row in self.grid:
+            if 0 in row:
+                return True
+        return False
 
 
 def main():
-    # Instancie la classe Random
-    file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
-    generator = Random(f"input/{file_name}.txt")
+    # Ask the user to choose a Sudoku grid
+    file_name = input("Entrez le nom du fichier contenant la grille de Sudoku : ")
+
+    # Instantiate BGrid classes to load the grid
     grid = BGrid(f"input/{file_name}.txt")
 
-    # Affiche la grille originale
+    # Instantiate Random_fill_and_check to fill the grid
+    random_fill_and_check = Random_fill_and_check(f"input/{file_name}.txt")
+
+    # Display the original grid
     grid_display = grid.display_grid()
     print("Grille originale :\n")
     print(grid_display)
 
-    # # Génère une nouvelle grille avec des entiers aléatoires
-    # random_grid_str = generator.generate_random_sudoku()
+    # Start the timer
+    start_time = time.time()
 
-    # # Affiche la grille remplie
-    # print("Grille remplie avec des entiers aléatoires :\n")
-    # print(random_grid_str)
+    # Loop while there are zeros in the grid
+    while random_fill_and_check.has_zeros():
+        # Fill the grid with random integers
+        random_grid_str = random_fill_and_check.fill()
 
-
-    while True:
-        # Génère une nouvelle grille avec des entiers aléatoires
-        random_grid_str = generator.generate_random_sudoku()
-
-        # Vérifie s'il y a un doublon dans chaque ligne ou colonne
-        if generator.check():
+        # Check the result. Duplicates => False, No duplicate => True
+        if random_fill_and_check.check():
+            # Display the filled grid
+            print("Grille remplie avec des entiers aléatoires :\n")
+            print(random_grid_str)
             break
         else:
-            print("Doublon trouvé dans au moins une ligne ou colonne. Regénération de la grille...")
+            print("Il y a un doublon ou plus. Regénération de la grille...")
 
-    # Affiche la grille remplie
-    print("Grille remplie avec des entiers aléatoires :\n")
-    print(random_grid_str)
+    # Stop the timer
+    end_time = time.time()
+    solver_time = end_time - start_time
+    print(f'\nTemps d\'éxecution : {solver_time}\n')
+
 
 if __name__ == "__main__":
     main()
