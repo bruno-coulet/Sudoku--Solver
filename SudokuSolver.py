@@ -31,5 +31,5 @@ class SudokuSolver:
         # Replace underscores with random numbers
         self.random_replace(sudoku)
         # Save the modified sudoku in a new file
-        self.save_change('sudoku_random_generated.txt', sudoku)
+        self.save_change('SudokuBruteForce.txt', sudoku)
 
