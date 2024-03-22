@@ -71,8 +71,6 @@ class Solver(Grid):
 
         self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
 
-        # Start the timer
-        start_time = time.time()
 
         sudoku = self.read_file(f"{self.file_name}.txt")
         self.display_grid(sudoku)
@@ -80,16 +78,12 @@ class Solver(Grid):
         start_time = time.time()
 
         if self.solve(sudoku):
-            end_time = time.time()
-            print(f"Sudoku résolu avec succès en {end_time - start_time} secondes !")
             self.display_grid(sudoku)
+            end_time = time.time()
+            print(f"Sudoku résolu avec succès en {(end_time - start_time) * 1000:.2f} millisecondes !")
+
         else:
             print("Pas de solution trouvée.")
-
-        # Stop the timer
-        end_time = time.time()
-        solver_time = (end_time - start_time) *1000
-        print(f'\nTemps d\'éxecution : {solver_time:.2f} millisecondes\n')
 
 
 # Create a Solver object and start the solving process.
