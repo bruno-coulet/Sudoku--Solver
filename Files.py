@@ -11,6 +11,7 @@ class Files:
     def save_change(new_filename, sudoku):
         with open(new_filename, 'w') as file:
             for row in sudoku:
+                row = str(row)
                 file.write(''.join(row) + '\n')
 
     

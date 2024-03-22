@@ -22,7 +22,8 @@ class Screen(SudokuSolver):
         self.white_3 = (254, 125, 94)
         self.black = (0,0,0)
         self.clock = pygame.time.Clock()
-        self.grid = self.read_file("input/sudoku.txt")
+        self.file = "input/sudoku.txt"
+        self.grid = self.read_file(self.file)
         self.font = pygame.font.SysFont("Themundayfreeversion-Regular.ttf", 40)
         pygame.display.set_caption("Sudoku")
 
@@ -97,7 +98,7 @@ class Screen(SudokuSolver):
         for i in range(9):
             for j in range(9):
                 if self.grid[i][j] != '_':
-                    number = self.font.render(self.grid[i][j], True, (0, 0, 0))
+                    number = self.font.render(str(self.grid[i][j]), True, (0, 0, 0))
                     self.Window.blit(number, (self.grid_start_x + j * cell_size + (cell_size // 2 - number.get_width() // 2),
                                                self.grid_start_y + i * cell_size + (cell_size // 2 - number.get_height() // 2)))
     def run(self):
@@ -108,13 +109,14 @@ class Screen(SudokuSolver):
                 self.display_line()
                 self.display_text()
                 self.display_number()
-                self.begin(self.grid)
+                self.begin(self.file)
                 if event.type == pygame.QUIT:
                     running = False
-                # if event.type == pygame.MOUSEBUTTONDOWN():
-                #     if self.button_solver.collidepoint(event.pos):
-                #             pass
-            
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.button_solver.collidepoint(event.pos):
+                            self.file= "sudoku_solution.txt"
+                            self.begin(self.file)
+
             pygame.display.flip()
 
         pygame.quit()

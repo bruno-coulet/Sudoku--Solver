@@ -58,25 +58,25 @@ class SudokuSolver(Grid,Files):
     def run_solver(self, filename):
         start_time = time.time()
 
-        sudoku = Files.read_file(filename)
+        sudoku = self.read_file(filename)
         if self.solve_sudoku(sudoku):
             Files.save_change('sudoku_solution.txt', sudoku)
 
         end_time = time.time()  # Stop time
-        self.solver_time = end_time - start_time # Calcul time
-
-    # def begin(self):
-    #     print()
-    #     self.file_name = input("Enter the Sudoku you want to solve : ")
-    #     self.display_grid(f"input/{self.file_name}.txt")
-    #     self.run_solver(f"input/{self.file_name}.txt")
-    #     self.display_grid('sudoku_solution.txt')
-    #     print("Time to solver :", self.solver_time, "seconds")
-    #     print()
+        self.solver_time = end_time - start_time
+    def begin(self):
+        print()
+        self.file_name = input("Enter the Sudoku you want to solve : ")
+        self.display_grid(f"input/{self.file_name}.txt")
+        self.run_solver(f"input/{self.file_name}.txt")
+        self.display_grid(f"input/{self.file_name}.txt")
+        # self.display_grid('sudoku_solution.txt')
+        print("Time to solver :", self.solver_time, "seconds")
+        print()
         
-    def begin(self,filename):
-        self.run_solver(f"input/{filename}.txt")
+    # def begin(self,filename):
+    #     self.run_solver(f"{filename}")
         # print("Time to solver :", self.solver_time, "seconds")
 
-# solver = SudokuSolver()
-# solver.begin()
+solver = SudokuSolver()
+solver.begin()

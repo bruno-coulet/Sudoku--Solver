@@ -21,6 +21,11 @@ class Grid:
             for j, number in enumerate(ligne):
                 if number.isdigit():
                     # assigns the number to the current position in the grid
+                    # print(grid[i][j],"grid pos")
+                    # print(grid[i],"i")
+                    # print(grid[j],"j")
+                    # print(int(number))
+                    # print(ligne)
                     grid[i][j] = int(number)
         return grid
 
