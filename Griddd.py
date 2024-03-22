@@ -26,12 +26,10 @@ class Grid:
     def display_grid(self,file_name):
         self.grid = self.read_file(file_name)
         print()
-        
         #  Iterates the lines of the grid (from 0 to 8 included) -> Horizontal separation
         for i in range(9):
             if i % 3 == 0 and i != 0:
                 print("-" * 21)
-                
             #  Iterates the colunns of the grid (from 0 to 8 included) -> Vertical separation
             for j in range(9):
                 if j % 3 == 0 and j != 0:

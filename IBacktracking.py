@@ -6,7 +6,7 @@ class SudokuSolver(Grid,Files):
     def __init__(self):
         Grid.__init__(self)
         Files.__init__(self)
-  
+
     def is_valid(self, sudoku, row, col, nb):
         # Check in the row
         if nb in sudoku[row]:

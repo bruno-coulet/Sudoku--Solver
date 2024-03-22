@@ -19,7 +19,6 @@ class Gridd:
             #  Iterates every element of the line.
             for j, number in enumerate(ligne):
                 if number.isdigit():
-                    # assigns the number to the current position in the grid
                     grid[i][j] = int(number)
         return grid
 
