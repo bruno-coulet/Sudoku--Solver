@@ -76,8 +76,12 @@ class Solver(Grid):
 
         sudoku = self.read_file(f"{self.file_name}.txt")
         self.display_grid(sudoku)
+
+        start_time = time.time()
+
         if self.solve(sudoku):
-            print("Sudoku résolu avec succès !")
+            end_time = time.time()
+            print(f"Sudoku résolu avec succès en {end_time - start_time} secondes !")
             self.display_grid(sudoku)
         else:
             print("Pas de solution trouvée.")
