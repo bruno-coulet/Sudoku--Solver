@@ -1,6 +1,6 @@
-import time
 from Files import Files
 from Grid import Grid
+import time
 
 class SudokuSolver(Grid,Files):
     def __init__(self):
@@ -36,6 +36,8 @@ class SudokuSolver(Grid,Files):
 
     def solve_sudoku(self, sudoku):
         # Find "_" in grid and got the position
+        self.start_time = time.time()
+        
         row, col = self.find_empty(sudoku)
 
         # Solver finish
@@ -51,8 +53,11 @@ class SudokuSolver(Grid,Files):
                 # Call solver 1 by 1
                 if self.solve_sudoku(sudoku):
                     self.result = True
+                    self.end_time = time.time() 
+                    self.elapsed_time = self.end_time - self.start_time
+                    print(self.elapsed_time)
                     return True
-
+                
                 # Return back
                 sudoku[row][col] = '_'
         return False
@@ -60,9 +65,12 @@ class SudokuSolver(Grid,Files):
     def run_solver(self, filename):
         sudoku = self.read_file(filename)
         if self.solve_sudoku(sudoku):
-            print(self.solve_sudoku(sudoku))
+            self.elapsed_time = self.elapsed_time
+            self.result = True
+            # print(self.result)
+            # print(self.solve_sudoku(sudoku))
             self.save_change('sudoku_solution.txt', sudoku)
-    #         Files.save_change('SudokuBruteForce.txt', sudoku)
+
 
     #     end_time = time.time()  # Stop time
     #     self.solver_time = end_time - start_time

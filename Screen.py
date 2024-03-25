@@ -26,6 +26,7 @@ class Screen(SudokuSolver):
         self.result = False
         self.clock = pygame.time.Clock()
         self.file = "input/sudoku.txt"
+        self.elapsed_time = 0
         self.grid = self.read_file(self.file)
         self.font = pygame.font.SysFont("Themundayfreeversion-Regular.ttf", 40)
         pygame.display.set_caption("Sudoku")
@@ -68,14 +69,13 @@ class Screen(SudokuSolver):
         self.rect_full_not_centered(self.white,360,130,445,445,10)
         self.rect_border(self.white_3, 340,20,480,570, 2, 10)
         self.rect_border(self.black, 358,129,447,449, 7, 10)
-        self.button_solver = self.button_hover("Button solver", 80, 310, 180, 60, self.white_3, self.white_3, self.white_3, self.white_3, "     SOLVER", "Themundayfreeversion-Regular.ttf", self.white,33, 0, 10)
+        self.button_solver = self.button_hover("Button solver", 80, 310, 180, 60, self.white_3, self.white_3, self.white_3, self.white_3, "    SOLVER", "Themundayfreeversion-Regular.ttf", self.white,33, 0, 10)
 
-            
     def display_text(self):
         self.text_not_align("Themundayfreeversion-Regular.ttf", 50, "SUDOKU", self.black, 80, 100)
         self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "SOLVER", self.black, 530, 80)
         self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "BACKTRACKING", self.black, 500, 40)
-        
+
     def load_sudoku_grid(self, filename):
         grid = []
         with open(filename, 'r') as file:
@@ -118,7 +118,7 @@ class Screen(SudokuSolver):
         self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "Time :", self.black, 70, 400)
 
         if self.start_time != 0:
-            time_str = "{:.3f}".format(time)
+            time_str = "{:.10f}".format(time)
             self.text_not_align("Themundayfreeversion-Regular.ttf", 30, time_str[:6], self.black, 80, 440)
         else:
             self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "0", self.black, 80, 440)
@@ -131,13 +131,14 @@ class Screen(SudokuSolver):
                     running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.button_solver.collidepoint(event.pos):
-                        self.start_time = time.time()
                         self.research = True
-
-            current_time = time.time()
-            elapsed_time = current_time - self.start_time
-
-
+                        if self.research:
+                            self.begin(self.file)
+                            self.grid = self.load_sudoku_grid("sudoku_solution.txt")
+                            self.display_number()
+                            if self.result == True:
+                                self.display_time(self.elapsed_time)
+                            
             self.display_rect()
             self.display_line()
             self.display_text()
@@ -148,20 +149,9 @@ class Screen(SudokuSolver):
             self.display_line()
             self.display_text()
             self.display_number()
-
+            self.display_time(self.elapsed_time)
             
-            self.display_time(elapsed_time)
 
-            if self.result ==  True:
-                print("end")
-                self.end_time = time.time() 
-                elapsed_time = self.end_time - self.start_time
-
-            if self.research:
-
-                self.grid = self.load_sudoku_grid("sudoku_solution.txt")
-                self.display_number()
-            
 
             pygame.display.flip()
 
