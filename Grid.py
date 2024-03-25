@@ -1,25 +1,28 @@
-class Gridd:
+import os
+class Grid:
     def __init__(self):
         pass
-
     def read_file(self,file_name):
-        with open(file_name, 'r') as f:
+        with open(os.path.join(file_name), 'r') as f:
             data = f.read()
-        return self.convert_into_grid(data)
 
+            
+        return self.convert_into_grid(data)
+    
     '''Converti le fichier .txt en chaine de caractères
     arg : str
     returns : la grille (liste de listes)
     '''
+
     def convert_into_grid(self, text):
         # Initiate a 9x9 grid filled with zeros
-        grid = [[0]*9 for _ in range(9)]
+        grid = [["_"]*9 for _ in range(9)]
         # Iterates every line of the string
         for i, ligne in enumerate(text.split('\n')):
             #  Iterates every element of the line.
             for j, number in enumerate(ligne):
                 if number.isdigit():
-                    grid[i][j] = int(number)
+                    grid[i][j] = str(number)
         return grid
 
     def display_grid(self,file_name):
@@ -38,5 +41,3 @@ class Gridd:
             # skips to next line
             print()
         print()
-
-

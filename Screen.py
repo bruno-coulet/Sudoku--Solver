@@ -148,7 +148,7 @@ class Screen(SudokuSolver):
             self.display_line()
             self.display_text()
             self.display_number()
-            self.begin(self.file)
+
             
             self.display_time(elapsed_time)
 
@@ -158,12 +158,10 @@ class Screen(SudokuSolver):
                 elapsed_time = self.end_time - self.start_time
 
             if self.research:
-                # self.begin("input/sudoku2.txt")
-                # self.grid = self.load_sudoku_grid("SudokuBruteForce.txt")
-                # self.display_number()
-                
-                self.file= "sudoku_solution.txt"
-                self.begin(self.file)
+
+                self.grid = self.load_sudoku_grid("sudoku_solution.txt")
+                self.display_number()
+            
 
             pygame.display.flip()
 

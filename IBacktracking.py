@@ -1,12 +1,12 @@
 import time
 from Files import Files
-from Griddd import Grid
+from Grid import Grid
 
 class SudokuSolver(Grid,Files):
     def __init__(self):
         Grid.__init__(self)
         Files.__init__(self)
-
+        self.result = False
     def is_valid(self, sudoku, row, col, nb):
         # Check in the row
         if nb in sudoku[row]:
@@ -44,11 +44,13 @@ class SudokuSolver(Grid,Files):
 
         # Change "_" --> 1 at 9
         for nb in map(str, range(1, 10)):
+            print(nb)
             if self.is_valid(sudoku, row, col, nb):
                 sudoku[row][col] = nb
 
                 # Call solver 1 by 1
                 if self.solve_sudoku(sudoku):
+                    self.result = True
                     return True
 
                 # Return back
@@ -56,15 +58,14 @@ class SudokuSolver(Grid,Files):
         return False
 
     def run_solver(self, filename):
-        start_time = time.time()
-
         sudoku = self.read_file(filename)
         if self.solve_sudoku(sudoku):
+            print(self.solve_sudoku(sudoku))
             self.save_change('sudoku_solution.txt', sudoku)
-            # Files.save_change('SudokuBruteForce.txt', sudoku)
+    #         Files.save_change('SudokuBruteForce.txt', sudoku)
 
-        end_time = time.time()  # Stop time
-        self.solver_time = end_time - start_time
+    #     end_time = time.time()  # Stop time
+    #     self.solver_time = end_time - start_time
         
     # def begin(self):
     #     print()
@@ -77,8 +78,9 @@ class SudokuSolver(Grid,Files):
     #     print()
         
     def begin(self,filename):
-        self.run_solver(f"{filename}")
-        print("Time to solver :", self.solver_time, "seconds")
+        self.run_solver(filename)
+        self.display_grid('sudoku_solution.txt')
+        # print("Time to solver :", self.solver_time, "seconds")
 
 # solver = SudokuSolver()
 # solver.begin()
