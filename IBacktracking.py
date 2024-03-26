@@ -7,6 +7,7 @@ class SudokuSolver(Grid,Files):
         Grid.__init__(self)
         Files.__init__(self)
         self.result = False
+        
     def is_valid(self, sudoku, row, col, nb):
         # Check in the row
         if nb in sudoku[row]:
@@ -46,7 +47,6 @@ class SudokuSolver(Grid,Files):
 
         # Change "_" --> 1 at 9
         for nb in map(str, range(1, 10)):
-            print(nb)
             if self.is_valid(sudoku, row, col, nb):
                 sudoku[row][col] = nb
 
@@ -56,7 +56,7 @@ class SudokuSolver(Grid,Files):
                     self.end_time = time.time() 
                     self.elapsed_time = self.end_time - self.start_time
                     print(self.elapsed_time)
-                    return True
+                    return self.elapsed_time,True
                 
                 # Return back
                 sudoku[row][col] = '_'
@@ -65,30 +65,16 @@ class SudokuSolver(Grid,Files):
     def run_solver(self, filename):
         sudoku = self.read_file(filename)
         if self.solve_sudoku(sudoku):
-            self.elapsed_time = self.elapsed_time
+            # self.elapsed_time = self.elapsed_time
+            # print(self.elapsed_time)
             self.result = True
-            # print(self.result)
-            # print(self.solve_sudoku(sudoku))
             self.save_change('sudoku_solution.txt', sudoku)
-
-
-    #     end_time = time.time()  # Stop time
-    #     self.solver_time = end_time - start_time
-        
-    # def begin(self):
-    #     print()
-    #     self.file_name = input("Enter the Sudoku you want to solve : ")
-    #     self.display_grid(f"input/{self.file_name}.txt")
-    #     self.run_solver(f"input/{self.file_name}.txt")
-    #     self.display_grid(f"input/{self.file_name}.txt")
-    #     # self.display_grid('sudoku_solution.txt')
-    #     print("Time to solver :", self.solver_time, "seconds")
-    #     print()
         
     def begin(self,filename):
+        print()
+        self.display_grid(filename)
         self.run_solver(filename)
         self.display_grid('sudoku_solution.txt')
-        # print("Time to solver :", self.solver_time, "seconds")
-
-# solver = SudokuSolver()
-# solver.begin()
+        
+        print("Time to solver :", self.elapsed_time, "seconds")
+        print()

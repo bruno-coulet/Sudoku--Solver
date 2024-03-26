@@ -2,14 +2,14 @@ import pygame
 import time
 import sys
 from IBacktracking import SudokuSolver
+from Element import Element
 pygame.init()
 
-class Screen(SudokuSolver):
+class Screen(SudokuSolver,Element):
     def __init__(self):
         SudokuSolver.__init__(self)
-        self.width = 900
-        self.height = 600
-        self.Window = pygame.display.set_mode((self.width,self.height))
+        Element.__init__(self)
+
         self.start_time = 0
         self.research = False
         self.grid_start_x = 360
@@ -18,11 +18,7 @@ class Screen(SudokuSolver):
         self.grid_end_y = 570
         self.grid_width = self.grid_end_x - self.grid_start_x
         self.grid_height = self.grid_end_y - self.grid_start_y
-        self.white = (255, 255, 255)
-        self.white_1 = (255, 243, 231)
-        self.white_2 = (255,231,206)
-        self.white_3 = (254, 125, 94)
-        self.black = (0,0,0)
+
         self.result = False
         self.clock = pygame.time.Clock()
         self.file = "input/sudoku.txt"
@@ -31,58 +27,23 @@ class Screen(SudokuSolver):
         self.font = pygame.font.SysFont("Themundayfreeversion-Regular.ttf", 40)
         pygame.display.set_caption("Sudoku")
 
-    def rect_full_not_centered(self,color, x, y, width, height, radius):
-        button = pygame.draw.rect(self.Window, color, pygame.Rect(x, y, width, height),0, radius)
-        return button
 
-    def rect_border(self,color, x, y, width, height, thickness, radius):
-        button = pygame.draw.rect(self.Window, color, pygame.Rect(x, y, width, height),  thickness, radius)
-        return button
-
-    def text_not_align(self,font, text_size, text_content, color, x, y):
-        text = pygame.font.Font(f"{font}", text_size).render(text_content, True, color)
-        text_rect = text.get_rect(topleft=(x, y))
-        self.Window.blit(text, text_rect)
-        
-    def is_mouse_over_button(self,button_rect):
-            mouse_pos = pygame.mouse.get_pos()
-            return button_rect.collidepoint(mouse_pos)
-        
-    def button_hover(self,name, x, y, width, height, color_full, color_border, color_hover, color_border_hover, text, font, text_color,text_size, thickness, radius): 
-
-            name = pygame.Rect(x,y, width, height)
-
-            if self.is_mouse_over_button(name):
-                self.rect_full_not_centered(color_hover, x-5, y-5, width + 10, height + 10, radius)
-                self.rect_border(color_border_hover, x-5, y-5, width + 10, height + 10, thickness, radius)
-            else:
-                self.rect_full_not_centered(color_full, x, y, width, height, radius)
-                self.rect_border(color_border, x, y, width, height, thickness, radius)
-            self.text_not_align(font, text_size, text, text_color,  x, y)
-
-            return name
         
     def display_rect(self):
         self.Window.fill(self.white_1)
-        # self.rect_full_not_centered(self.white,340,20,480,580,10)
         self.rect_full_not_centered(self.white_2,340,20,480,570,10)
         self.rect_full_not_centered(self.white,360,130,445,445,10)
         self.rect_border(self.white_3, 340,20,480,570, 2, 10)
         self.rect_border(self.black, 358,129,447,449, 7, 10)
         self.button_solver = self.button_hover("Button solver", 80, 310, 180, 60, self.white_3, self.white_3, self.white_3, self.white_3, "    SOLVER", "Themundayfreeversion-Regular.ttf", self.white,33, 0, 10)
+        # self.button_solver = self.button_hover("Button solver", 80, 310, 180, 60, self.white_3, self.white_3, self.white_3, self.white_3, "    SOLVER", "Themundayfreeversion-Regular.ttf", self.white,33, 0, 10)
 
     def display_text(self):
         self.text_not_align("Themundayfreeversion-Regular.ttf", 50, "SUDOKU", self.black, 80, 100)
         self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "SOLVER", self.black, 530, 80)
         self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "BACKTRACKING", self.black, 500, 40)
 
-    def load_sudoku_grid(self, filename):
-        grid = []
-        with open(filename, 'r') as file:
-            for line in file:
-                row = line.strip()
-                grid.append(row)
-        return grid
+
 
     def display_line(self):
         cell_size = self.grid_width // 9
@@ -122,7 +83,14 @@ class Screen(SudokuSolver):
             self.text_not_align("Themundayfreeversion-Regular.ttf", 30, time_str[:6], self.black, 80, 440)
         else:
             self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "0", self.black, 80, 440)
-            
+    def load_sudoku_grid(self, filename):
+        grid = []
+        with open(filename, 'r') as file:
+            for line in file:
+                row = line.strip()
+                grid.append(row)
+        return grid
+    
     def run(self):        
         running = True                         
         while running:
@@ -138,20 +106,13 @@ class Screen(SudokuSolver):
                             self.display_number()
                             if self.result == True:
                                 self.display_time(self.elapsed_time)
-                            
+            
             self.display_rect()
             self.display_line()
             self.display_text()
             self.display_number()
             self.display_result()
-            
-            self.display_rect()
-            self.display_line()
-            self.display_text()
-            self.display_number()
             self.display_time(self.elapsed_time)
-            
-
 
             pygame.display.flip()
 
