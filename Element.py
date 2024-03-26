@@ -8,9 +8,18 @@ class Element:
         
         # Color
         self.white = (255, 255, 255)
-        self.white_1 = (255, 243, 231)
-        self.white_2 = (255,231,206)
-        self.white_3 = (254, 125, 94)
+        self.white_1 = "#FFDFDB"
+        self.white_2 = "#FBBFB8"
+        self.white_3 = "#F79F95"
+        self.white_4 = "#F38071"
+        self.white_5 = "#F0604D"
+        
+        # self.white_1 = "#E0FCFC"
+        # self.white_2 = "#C2E0E3"
+        # self.white_3 = "#9DB5C0"
+        # self.white_4 = "#5C6C73"
+        # self.white_5 = "#253337"
+        
         self.black = (0,0,0)
      
     # Display rectangle full

@@ -36,8 +36,15 @@ class Screen(SudokuSolver,Element):
         self.rect_border(self.white_3, 340,20,480,570, 2, 10)
         self.rect_border(self.black, 358,129,447,449, 7, 10)
         self.button_solver = self.button_hover("Button solver", 80, 310, 180, 60, self.white_3, self.white_3, self.white_3, self.white_3, "    SOLVER", "Themundayfreeversion-Regular.ttf", self.white,33, 0, 10)
-        # self.button_solver = self.button_hover("Button solver", 80, 310, 180, 60, self.white_3, self.white_3, self.white_3, self.white_3, "    SOLVER", "Themundayfreeversion-Regular.ttf", self.white,33, 0, 10)
-
+        
+        self.rect_full_not_centered(self.white,40,50,270,50,10)
+        
+        self.sudoku_1 = self.button_hover("sudoku_1", 50, 55, 40, 40, self.white_1, self.white_1, self.white_1,self.white_1, " 1", "Themundayfreeversion-Regular.ttf", self.white_5,33, 0, 10)
+        self.sudoku_2 = self.button_hover("sudoku_2", 100, 55, 40, 40, self.white_2, self.white_2, self.white_2, self.white_2, " 2", "Themundayfreeversion-Regular.ttf", self.white_4,33, 0, 10)
+        self.sudoku_3 = self.button_hover("sudoku_3", 150, 55, 40, 40, self.white_3, self.white_3, self.white_3, self.white_3, " 3", "Themundayfreeversion-Regular.ttf", self.black,33, 0, 10)
+        self.sudoku_4 = self.button_hover("sudoku_4", 200, 55, 40, 40, self.white_4, self.white_4, self.white_4, self.white_4, " 4", "Themundayfreeversion-Regular.ttf", self.white_3,33, 0, 10)
+        self.sudoku_5 = self.button_hover("sudoku_5", 255, 55, 40, 40, self.white_5, self.white_5, self.white_5, self.white_5, " 5", "Themundayfreeversion-Regular.ttf", self.white_1,33, 0, 10)
+        
     def display_text(self):
         self.text_not_align("Themundayfreeversion-Regular.ttf", 50, "SUDOKU", self.black, 80, 100)
         self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "SOLVER", self.black, 530, 80)
@@ -98,7 +105,32 @@ class Screen(SudokuSolver,Element):
                 if event.type == pygame.QUIT:
                     running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.button_solver.collidepoint(event.pos):
+                    if self.sudoku_1.collidepoint(event.pos):
+                        self.file = "input/sudoku.txt"
+                        self.display_grid(self.file)
+                        self.display_number()
+                        
+                    elif self.sudoku_2.collidepoint(event.pos):
+                        self.file = "input/sudoku2.txt"
+                        self.display_grid(self.file)
+                        self.display_number()
+                        
+                    elif self.sudoku_3.collidepoint(event.pos):
+                        self.file = "input/sudoku3.txt"
+                        self.display_grid(self.file)
+                        self.display_number()
+                        
+                    elif self.sudoku_4.collidepoint(event.pos):
+                        self.file = "input/sudoku4.txt"
+                        self.display_grid(self.file)
+                        self.display_number()
+                        
+                    elif self.sudoku_5.collidepoint(event.pos):
+                        self.file = "input/evilsudoku.txt"
+                        self.display_grid(self.file)
+                        self.display_number()
+                        
+                    elif self.button_solver.collidepoint(event.pos):
                         self.research = True
                         if self.research:
                             self.begin(self.file)
@@ -106,7 +138,7 @@ class Screen(SudokuSolver,Element):
                             self.display_number()
                             if self.result == True:
                                 self.display_time(self.elapsed_time)
-            
+
             self.display_rect()
             self.display_line()
             self.display_text()
