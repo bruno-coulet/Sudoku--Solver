@@ -50,7 +50,7 @@ class SudokuSolver(Grid,Files):
             if self.is_valid(sudoku, row, col, nb):
                 sudoku[row][col] = nb
 
-                # Call solver 1 by 1
+                # Solver finish
                 if self.solve_sudoku(sudoku):
                     self.result = True
                     self.end_time = time.time() 
