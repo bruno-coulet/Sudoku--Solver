@@ -1,8 +1,8 @@
 from Grid import Grid
 import time
 
-# The Solver class is used to solve a Sudoku puzzle.
-class Solver(Grid):
+# The Backtracking class is used to solve a Sudoku puzzle.
+class Backtracking(Grid):
     def __init__(self):
         Grid.__init__(self)
 
@@ -90,6 +90,6 @@ class Solver(Grid):
             return None
 
 
-# Create a Solver object and start the solving process.
-# solver = Solver()
+# Create a Backtracking object and start the solving process.
+# solver = Backtracking()
 # solver.begin()

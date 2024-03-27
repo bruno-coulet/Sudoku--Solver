@@ -1,9 +1,9 @@
 import time, os, statistics, sys
-from backtracking import Solver
+from backtracking import Backtracking
 
-class Test:
+class Testing:
     def __init__(self):
-        self.solver = Solver()
+        self.solver = Backtracking()
 
     def run_tests(self):
         input_folder = "input"
@@ -20,7 +20,7 @@ class Test:
         execution_times = []
 
         for algo_name in algo_names:
-            print(f"Test de {algo_name}...")
+            print(f"Testing de {algo_name}...")
             file_path = os.path.join(input_folder, algo_name)
             execution_time = self.solver.begin(algo_name, file_path)
             # Update table with current execution stats
@@ -44,8 +44,17 @@ class Test:
             table += f"Temps moyen : {average_time:.3f} ms\n"
 
         print(table)
+        return table
 
 
 if __name__ == "__main__":
-    test = Test()
+    test = Testing()
     test.run_tests()
+
+   # Tentative d'écriture du contenu de la variable table dans le fichier README.md
+    try:
+        with open("README.md", "w") as readme_file:
+            readme_file.write(table)
+        print("Le fichier README.md a été créé avec succès.")
+    except Exception as e:
+        print(f"Une erreur s'est produite lors de la création du fichier README.md : {e}")
