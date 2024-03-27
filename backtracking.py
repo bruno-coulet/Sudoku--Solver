@@ -70,15 +70,19 @@ class Solver(Grid):
 
         # self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
         sudoku = self.read_file(file_name)
+        print ("\nGrille originale")
         self.display_grid(sudoku)
 
         start_time = time.time()
 
         if self.solve(sudoku):
+            print ("Grille résolue")
             self.display_grid(sudoku)
             end_time = time.time()
             total_time = end_time - start_time
             print(f"{file_name} résolu avec succès en {(total_time) * 1000:.2f} millisecondes !\n")
+
+            
             return total_time
         
         else:

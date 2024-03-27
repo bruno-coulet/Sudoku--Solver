@@ -27,7 +27,6 @@ class Grid:
         return grid
 
     def display_grid(self, grid):
-        print()
         #  Iterates the lines of the grid (from 0 to 8 included) -> Horizontal separation
         for i in range(9):
             if i % 3 == 0 and i != 0:
