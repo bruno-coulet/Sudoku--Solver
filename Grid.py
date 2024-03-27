@@ -1,12 +1,15 @@
 import os
+from colorama import Fore, Style
 
 class Grid:
     def __init__(self):
         pass
+
     def read_file(self,file_name=None):
-        with open(os.path.join('input', file_name), 'r') as f:
+        with open(file_name, 'r') as f:
             data = f.read()
         return self.convert_into_grid(data)
+    
     '''Converti le fichier .txt en chaine de caractères
     arg : str
     returns : la grille (liste de listes)
@@ -22,6 +25,7 @@ class Grid:
                     # assigns the number to the current position in the grid
                     grid[i][j] = int(number)
         return grid
+
     def display_grid(self, grid):
         print()
         #  Iterates the lines of the grid (from 0 to 8 included) -> Horizontal separation
@@ -32,8 +36,12 @@ class Grid:
             for j in range(9):
                 if j % 3 == 0 and j != 0:
                     print("|", end=" ")
+                # Print zeros in blue
+                if grid[i][j] == 0:
+                    print(Fore.BLUE + str(grid[i][j]), end=" " + Style.RESET_ALL)
                 # display the numbera t the position (i, j) in the grid.
-                print(grid[i][j], end=" ")
+                else:
+                    print(grid[i][j], end=" ")
             # skips to next line
             print()
         print()
