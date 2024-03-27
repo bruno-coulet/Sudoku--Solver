@@ -69,7 +69,7 @@ class Screen(SudokuSolver,Element):
         for i in range(9):
             for j in range(9):
                 if self.grid[i][j] != '_':
-                    number = self.font.render(str(self.grid[i][j]), True, (0, 0, 0))
+                    number = self.font.render(str(self.grid[i][j]), True, self.black)
                     self.Window.blit(number, (self.grid_start_x + j * cell_size + (cell_size // 2 - number.get_width() // 2),
                                                self.grid_start_y + i * cell_size + (cell_size // 2 - number.get_height() // 2)))
 
