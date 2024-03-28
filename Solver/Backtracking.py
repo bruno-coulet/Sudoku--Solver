@@ -1,8 +1,8 @@
-from Files import Files
-from Grid import Grid
+from Solver.Files import Files
+from Solver.Grid import Grid
 import time
 
-class SudokuSolver(Grid,Files):
+class Backtracking(Grid,Files):
     def __init__(self):
         Grid.__init__(self)
         Files.__init__(self)
@@ -65,8 +65,6 @@ class SudokuSolver(Grid,Files):
     def run_solver(self, filename):
         sudoku = self.read_file(filename)
         if self.solve_sudoku(sudoku):
-            # self.elapsed_time = self.elapsed_time
-            # print(self.elapsed_time)
             self.result = True
             self.save_change('sudoku_solution.txt', sudoku)
         
@@ -75,6 +73,13 @@ class SudokuSolver(Grid,Files):
         self.display_grid(filename)
         self.run_solver(filename)
         self.display_grid('sudoku_solution.txt')
+        start_time = time.time()
         
-        print("Time to solver :", self.elapsed_time, "seconds")
+        if self.result:
+            end_time = time.time()
+            self.elapsed_time = end_time - start_time
+            print(f"Sudoku résolu avec succès en {self.elapsed_time * 1000:.2f} millisecondes !")
+        else:
+            print("Pas de solution trouvée.")
+        # print("Time to solver :", self.elapsed_time, "seconds")
         print()

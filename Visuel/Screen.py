@@ -1,13 +1,13 @@
 import pygame
 import time
 import sys
-from IBacktracking import SudokuSolver
-from Element import Element
+from Solver.Backtracking import Backtracking
+from Visuel.Element import Element
 pygame.init()
 
-class Screen(SudokuSolver,Element):
+class Screen(Backtracking,Element):
     def __init__(self):
-        SudokuSolver.__init__(self)
+        Backtracking.__init__(self)
         Element.__init__(self)
 
         self.start_time = 0
@@ -151,5 +151,5 @@ class Screen(SudokuSolver,Element):
         pygame.quit()
         sys.exit()
 
-interface = Screen()
-interface.run()
+# interface = Screen()
+# interface.run()
