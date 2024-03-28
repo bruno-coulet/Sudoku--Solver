@@ -18,7 +18,7 @@ class Testing:
 
     def run_tests(self):
         input_folder = "input"
-        algo_names = [file for file in os.listdir(input_folder) if file.endswith(".txt")]
+        grid_names = [file for file in os.listdir(input_folder) if file.endswith(".txt")]
 
         # Gets the script name
         script_name = os.path.basename(sys.argv[0])
@@ -30,18 +30,18 @@ class Testing:
         # Initialize variables for calculating min, max, and average time
         execution_times = []
 
-        for algo_name in algo_names:
-            print(f"Testing de {algo_name}...")
-            file_path = os.path.join(input_folder, algo_name)
+        for grid_name in grid_names:
+            print(f"Testing de {grid_name}...")
+            file_path = os.path.join(input_folder, grid_name)
             execution_time = self.solver.begin(file_path)
             # Update table with current execution stats
-            table += f"| {self.algorithm_name}  |  {algo_name}   | {execution_time:.3f} ms |\n"
+            table += f"| {self.algorithm_name}  |  {grid_name}   | {execution_time:.3f} ms |\n"
                         
             if execution_time is not None:
                 execution_times.append(execution_time)
 
             # if None:
-            #     print(f"Pas de solution trouvée pour {algo_name}.\n")
+            #     print(f"Pas de solution trouvée pour {grid_name}.\n")
                 
         if execution_times:
             # Calculate min, max, and average times
