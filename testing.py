@@ -49,7 +49,7 @@ class Testing:
 
 if __name__ == "__main__":
     test = Testing()
-    test.run_tests()
+    table = test.run_tests()
 
    # Tentative d'écriture du contenu de la variable table dans le fichier README.md
     try:
