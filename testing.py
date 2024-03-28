@@ -20,9 +20,6 @@ class Testing:
         input_folder = "input"
         grid_names = [file for file in os.listdir(input_folder) if file.endswith(".txt")]
 
-        # Gets the script name
-        script_name = os.path.basename(sys.argv[0])
-
         # Creates the markdown table
         table = "| Fichier testé | Grille testée | Temps d'exécution  |\n"
         table += "| -------------- | ------------- | ----------------- |\n"
