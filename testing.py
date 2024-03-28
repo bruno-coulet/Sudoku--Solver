@@ -1,9 +1,20 @@
 import time, os, statistics, sys
 from backtracking import Backtracking
+from BruteForce import BruteForce
 
 class Testing:
+    '''Tests either brute force or backtracking'''
     def __init__(self):
-        self.solver = Backtracking()
+
+        self.algorithm_name = input('Quel méthode voulez-vous utiliser, "bruteforce" ou "backtracking" : ')
+        if self.algorithm_name.lower() == 'bruteforce':
+            self.solver = BruteForce()
+        elif self.algorithm_name.lower() == 'backtracking':
+            self.solver = Backtracking()
+        else:
+            raise ValueError("Méthode invalide. Veuillez choisir 'BruteForce' ou 'Backtracking'.")
+
+         
 
     def run_tests(self):
         input_folder = "input"
@@ -22,9 +33,9 @@ class Testing:
         for algo_name in algo_names:
             print(f"Testing de {algo_name}...")
             file_path = os.path.join(input_folder, algo_name)
-            execution_time = self.solver.begin(algo_name, file_path)
+            execution_time = self.solver.begin(file_path)
             # Update table with current execution stats
-            table += f"| {script_name}  |  {algo_name}   | {execution_time:.3f} ms |\n"
+            table += f"| {self.algorithm_name}  |  {algo_name}   | {execution_time:.3f} ms |\n"
                         
             if execution_time is not None:
                 execution_times.append(execution_time)
@@ -51,7 +62,7 @@ if __name__ == "__main__":
     test = Testing()
     table = test.run_tests()
 
-   # Tentative d'écriture du contenu de la variable table dans le fichier README.md
+   # creates README.md to store the table
     try:
         with open("README.md", "w") as readme_file:
             readme_file.write(table)

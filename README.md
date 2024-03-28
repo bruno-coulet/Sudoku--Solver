@@ -1,15 +1,15 @@
 | Fichier testé | Grille testée | Temps d'exécution  |
 | -------------- | ------------- | ----------------- |
-| testing.py  |  1.txt   | 0.002 ms |
-| testing.py  |  2.txt   | 0.001 ms |
-| testing.py  |  3.txt   | 0.002 ms |
-| testing.py  |  4.txt   | 0.016 ms |
-| testing.py  |  evilsudoku.txt   | 0.033 ms |
-| testing.py  |  sudoku.txt   | 0.004 ms |
-| testing.py  |  sudoku2.txt   | 0.012 ms |
-| testing.py  |  sudoku3.txt   | 0.002 ms |
-| testing.py  |  sudoku4.txt   | 0.050 ms |
+| backtracking  |  1.txt   | 0.000 ms |
+| backtracking  |  2.txt   | 0.002 ms |
+| backtracking  |  3.txt   | 0.002 ms |
+| backtracking  |  4.txt   | 0.002 ms |
+| backtracking  |  evilsudoku.txt   | 0.032 ms |
+| backtracking  |  sudoku.txt   | 0.004 ms |
+| backtracking  |  sudoku2.txt   | 0.013 ms |
+| backtracking  |  sudoku3.txt   | 0.004 ms |
+| backtracking  |  sudoku4.txt   | 0.049 ms |
 
-Temps le plus court : 0.001 ms
-Temps le plus long : 0.050 ms
-Temps moyen : 0.013 ms
+Temps le plus court : 0.000 ms
+Temps le plus long : 0.049 ms
+Temps moyen : 0.012 ms

@@ -1,6 +1,7 @@
-import os
+# import os
 from SudokuSolver import SudokuSolver
 from Grid import Grid
+import time
 
 class BruteForce(SudokuSolver,Grid):
     def __init__(self):
@@ -39,37 +40,36 @@ class BruteForce(SudokuSolver,Grid):
                             region_nums.add(sudoku[i+k][j+l])
         return True
     
-    def read_sudoku(self,filename):
+    def read_sudoku(self,file_name):
         sudoku = []
-        with open(filename, 'r') as file:
+        with open(file_name, 'r') as file:
             for line in file:
                 row = [char for char in line.strip()]
                 sudoku.append(row)
         return sudoku
 
-    # def begin(self):
-    #     new_filename = 'SudokuBruteForce.txt'
-    #     self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
-    #     self.display_grid(f"input/{self.file_name}.txt")
-    #     self.run_solver(f"input/{self.file_name}.txt")
-    #     self.display_grid(new_filename)
-    #     sudoku = self.read_sudoku(new_filename)
-    #     if self.verification(sudoku):
-    #         print("Good grid")
-    #     else:
-    #         file_remove = "SudokuBruteForce.txt"
+    def begin(self, file_name):
+        # new_file_name = 'SudokuBruteForce.txt'
+        # self.run_solver(file_name)
+        # self.display_grid(new_file_name)
+        # sudoku = self.read_sudoku(new_file_name)
+        # self.result = bool(self.verification(sudoku))
+        sudoku = self.read_sudoku(file_name)
 
-    #         if os.path.exists(file_remove):
-    #             os.remove(file_remove)
-    #         print("Bad grid")
+        start_time = time.time()
 
+        if self.run_solver(sudoku):
+            print ("Grille résolue")
+            self.display_grid(sudoku)
+            end_time = time.time()
+            total_time = end_time - start_time
+            print(f"{file_name} résolu avec succès en {(total_time) * 1000:.2f} millisecondes !\n")
 
-
-    def begin(self,filename):
-        new_filename = 'SudokuBruteForce.txt'
-        self.run_solver(filename)
-        self.display_grid(new_filename)
-        sudoku = self.read_sudoku(new_filename)
-        self.result = bool(self.verification(sudoku))
+            
+            return total_time
+        
+        else:
+            print("Pas de solution trouvée.")
+            return None
 
         

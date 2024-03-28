@@ -66,7 +66,7 @@ class Backtracking(Grid):
             return False
 
     # This method starts the solving process.
-    def begin(self, algo_name, file_name):
+    def begin(self, file_name):
 
         # self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
         sudoku = self.read_file(file_name)
