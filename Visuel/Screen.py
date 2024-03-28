@@ -19,7 +19,7 @@ class Screen(Backtracking,Element):
         self.grid_width = self.grid_end_x - self.grid_start_x
         self.grid_height = self.grid_end_y - self.grid_start_y
 
-        self.result = False
+        # self.result = False
         self.clock = pygame.time.Clock()
         self.file = "input/sudoku.txt"
         self.elapsed_time = 0
@@ -90,6 +90,7 @@ class Screen(Backtracking,Element):
             self.text_not_align("Themundayfreeversion-Regular.ttf", 30, time_str[:6], self.black, 80, 440)
         else:
             self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "0", self.black, 80, 440)
+            
     def load_sudoku_grid(self, filename):
         grid = []
         with open(filename, 'r') as file:
@@ -107,27 +108,27 @@ class Screen(Backtracking,Element):
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.sudoku_1.collidepoint(event.pos):
                         self.file = "input/sudoku.txt"
-                        self.display_grid(self.file)
+                        self.return_grid(self.file)
                         self.display_number()
                         
                     elif self.sudoku_2.collidepoint(event.pos):
                         self.file = "input/sudoku2.txt"
-                        self.display_grid(self.file)
+                        self.return_grid(self.file)
                         self.display_number()
                         
                     elif self.sudoku_3.collidepoint(event.pos):
                         self.file = "input/sudoku3.txt"
-                        self.display_grid(self.file)
+                        self.return_grid(self.file)
                         self.display_number()
                         
                     elif self.sudoku_4.collidepoint(event.pos):
                         self.file = "input/sudoku4.txt"
-                        self.display_grid(self.file)
+                        self.return_grid(self.file)
                         self.display_number()
                         
                     elif self.sudoku_5.collidepoint(event.pos):
                         self.file = "input/evilsudoku.txt"
-                        self.display_grid(self.file)
+                        self.return_grid(self.file)
                         self.display_number()
                         
                     elif self.button_solver.collidepoint(event.pos):

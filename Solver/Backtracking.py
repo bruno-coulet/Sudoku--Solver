@@ -53,9 +53,9 @@ class Backtracking(Grid,Files):
                 # Solver finish
                 if self.solve_sudoku(sudoku):
                     self.result = True
-                    self.end_time = time.time() 
+                    self.end_time = time.time()
                     self.elapsed_time = self.end_time - self.start_time
-                    print(self.elapsed_time)
+                    # print(self.elapsed_time)
                     return self.elapsed_time,True
                 
                 # Return back
