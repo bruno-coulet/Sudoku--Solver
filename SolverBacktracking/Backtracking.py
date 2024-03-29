@@ -83,9 +83,8 @@ class Backtracking(Grid,Files):
             self.save_change('sudoku_solution.txt', sudoku)
         
         # Calculez la durée écoulée
-        self.elapsed_time = elapsed_time
+        self.elapsed_time = elapsed_time * 1000
         
         # Affichez le temps écoulé
-        print("Temps écoulé pour résoudre le Sudoku:", self.elapsed_time, "secondes")
+        print("Temps écoulé pour résoudre le Sudoku:", self.elapsed_time, "millisecondes")
         
-        return self.elapsed_time
