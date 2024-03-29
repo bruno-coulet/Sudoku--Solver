@@ -34,9 +34,14 @@ class Grid:
             for j in range(9):
                 if j % 3 == 0 and j != 0:
                     print("|", end=" ")
-                # display the numbera t the position (i, j) in the grid.
-                print(self.grid[i][j], end=" ")
-            # skips to next line
+            #     # display the numbera t the position (i, j) in the grid.
+            #     print(self.grid[i][j], end=" ")
+            # # skips to next line
+                if self.grid[i][j] == "_":
+                    print("\033[94m" + self.grid[i][j] + "\033[0m", end=" ")
+                else:
+                    print(self.grid[i][j], end=" ")
+
             print()
         print()
 
