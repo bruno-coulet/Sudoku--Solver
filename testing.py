@@ -1,4 +1,4 @@
-import time, os, statistics, sys
+import os, statistics
 from SolverBacktracking.Backtracking import Backtracking
 from SolverBruteForce.BruteForce import BruteForce
 
@@ -31,7 +31,7 @@ class Testing:
             print(f"Testing de {grid_name}...")
             file_path = os.path.join(input_folder, grid_name)
             elapsed_time = self.solver.begin(file_path)
-            print (elapsed_time)
+
             # Update table with current execution stats
             table += f"| {self.algorithm_name}  |  {grid_name}   | {elapsed_time:.3f} ms |\n"
                         
