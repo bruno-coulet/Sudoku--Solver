@@ -18,6 +18,7 @@ class Screen(BruteForce,Element):
         self.grid_height = self.grid_end_y - self.grid_start_y
         self.start_time = 0
         self.clock = pygame.time.Clock()
+        self.research = False
         self.file = "input/sudoku.txt"
         self.elapsed_time = 0
         self.grid = self.read_file(self.file)

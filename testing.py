@@ -1,6 +1,6 @@
 import time, os, statistics, sys
-from backtracking import Backtracking
-from BruteForce import BruteForce
+from Solver.Backtracking import Backtracking
+from Solver.BruteForce import BruteForce
 
 class Testing:
     '''Tests either brute force or backtracking'''
