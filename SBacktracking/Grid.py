@@ -4,7 +4,7 @@ class Grid:
     def __init__(self):
         pass
     def read_file(self,file_name=None):
-        with open(os.path.join('input', file_name), 'r') as f:
+        with open(os.path.join(file_name), 'r') as f:
             data = f.read()
         return self.convert_into_grid(data)
     '''Converti le fichier .txt en chaine de caractères

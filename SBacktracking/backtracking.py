@@ -1,4 +1,4 @@
-from Grid import Grid
+from SBacktracking.Grid import Grid
 import time
 
 # The Solver class is used to solve a Sudoku puzzle.
@@ -67,12 +67,27 @@ class Solver(Grid):
             return False
 
     # This method starts the solving process.
-    def begin(self):
+    # def begin(self):
 
-        self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
+    #     self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
 
 
-        sudoku = self.read_file(f"{self.file_name}.txt")
+    #     sudoku = self.read_file(f"{self.file_name}.txt")
+    #     self.display_grid(sudoku)
+
+    #     start_time = time.time()
+
+    #     if self.solve(sudoku):
+    #         self.display_grid(sudoku)
+    #         end_time = time.time()
+    #         print(f"Sudoku résolu avec succès en {(end_time - start_time) * 1000:.2f} millisecondes !")
+
+    #     else:
+    #         print("Pas de solution trouvée.")
+    def begin(self,filename):
+        # self.file_name = input("Entrez le nom du fichier contenant la grille de Sudoku :")
+
+        sudoku = self.read_file(filename)
         self.display_grid(sudoku)
 
         start_time = time.time()
@@ -80,12 +95,12 @@ class Solver(Grid):
         if self.solve(sudoku):
             self.display_grid(sudoku)
             end_time = time.time()
-            print(f"Sudoku résolu avec succès en {(end_time - start_time) * 1000:.2f} millisecondes !")
-
+            self.elapsed_time = end_time - start_time
+            print(f"Sudoku résolu avec succès en {self.elapsed_time * 1000:.2f} millisecondes !")
         else:
             print("Pas de solution trouvée.")
 
-
-# Create a Solver object and start the solving process.
-solver = Solver()
-solver.begin()
+        
+# # Create a Solver object and start the solving process.
+# solver = Solver()
+# solver.begin()
