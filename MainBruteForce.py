@@ -1,6 +1,6 @@
 from Solver.BruteForce import BruteForce
 
-class Main(BruteForce):
+class MainBruteForce(BruteForce):
     def __init__(self):
         super().__init__()
         
