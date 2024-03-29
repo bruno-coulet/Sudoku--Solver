@@ -2,25 +2,20 @@ import pygame
 import time
 import sys
 from Solver.BruteForce import BruteForce
+from Visuel.Element import Element
 pygame.init()
 
-class Screen(BruteForce):
+class Screen(BruteForce,Element):
     def __init__(self):
         BruteForce.__init__(self)
-        self.width = 900
-        self.height = 600
-        self.Window = pygame.display.set_mode((self.width,self.height))
+        Element.__init__(self)
+        
         self.grid_start_x = 360
         self.grid_start_y = 130
         self.grid_end_x = 805
         self.grid_end_y = 570
         self.grid_width = self.grid_end_x - self.grid_start_x
         self.grid_height = self.grid_end_y - self.grid_start_y
-        self.white = (255, 255, 255)
-        self.white_1 = (255, 243, 231)
-        self.white_2 = (255,231,206)
-        self.white_3 = (254, 125, 94)
-        self.black = (0,0,0)
         self.start_time = 0
         self.clock = pygame.time.Clock()
         self.grid = self.load_sudoku_grid("input/sudoku2.txt")
@@ -29,36 +24,36 @@ class Screen(BruteForce):
         pygame.display.set_caption("Sudoku")
         
 
-    def rect_full_not_centered(self,color, x, y, width, height, radius):
-        button = pygame.draw.rect(self.Window, color, pygame.Rect(x, y, width, height),0, radius)
-        return button
+    # def rect_full_not_centered(self,color, x, y, width, height, radius):
+    #     button = pygame.draw.rect(self.Window, color, pygame.Rect(x, y, width, height),0, radius)
+    #     return button
 
-    def rect_border(self,color, x, y, width, height, thickness, radius):
-        button = pygame.draw.rect(self.Window, color, pygame.Rect(x, y, width, height),  thickness, radius)
-        return button
+    # def rect_border(self,color, x, y, width, height, thickness, radius):
+    #     button = pygame.draw.rect(self.Window, color, pygame.Rect(x, y, width, height),  thickness, radius)
+    #     return button
 
-    def text_not_align(self,font, text_size, text_content, color, x, y):
-        text = pygame.font.Font(f"{font}", text_size).render(text_content, True, color)
-        text_rect = text.get_rect(topleft=(x, y))
-        self.Window.blit(text, text_rect)
+    # def text_not_align(self,font, text_size, text_content, color, x, y):
+    #     text = pygame.font.Font(f"{font}", text_size).render(text_content, True, color)
+    #     text_rect = text.get_rect(topleft=(x, y))
+    #     self.Window.blit(text, text_rect)
         
-    def is_mouse_over_button(self,button_rect):
-            mouse_pos = pygame.mouse.get_pos()
-            return button_rect.collidepoint(mouse_pos)
+    # def is_mouse_over_button(self,button_rect):
+    #         mouse_pos = pygame.mouse.get_pos()
+    #         return button_rect.collidepoint(mouse_pos)
         
-    def button_hover(self,name, x, y, width, height, color_full, color_border, color_hover, color_border_hover, text, font, text_color,text_size, thickness, radius): 
+    # def button_hover(self,name, x, y, width, height, color_full, color_border, color_hover, color_border_hover, text, font, text_color,text_size, thickness, radius): 
 
-            name = pygame.Rect(x,y, width, height)
+    #         name = pygame.Rect(x,y, width, height)
 
-            if self.is_mouse_over_button(name):
-                self.rect_full_not_centered(color_hover, x-5, y-5, width + 10, height + 10, radius)
-                self.rect_border(color_border_hover, x-5, y-5, width + 10, height + 10, thickness, radius)
-            else:
-                self.rect_full_not_centered(color_full, x, y, width, height, radius)
-                self.rect_border(color_border, x, y, width, height, thickness, radius)
-            self.text_not_align(font, text_size, text, text_color,  x, y)
+    #         if self.is_mouse_over_button(name):
+    #             self.rect_full_not_centered(color_hover, x-5, y-5, width + 10, height + 10, radius)
+    #             self.rect_border(color_border_hover, x-5, y-5, width + 10, height + 10, thickness, radius)
+    #         else:
+    #             self.rect_full_not_centered(color_full, x, y, width, height, radius)
+    #             self.rect_border(color_border, x, y, width, height, thickness, radius)
+    #         self.text_not_align(font, text_size, text, text_color,  x, y)
 
-            return name
+    #         return name
         
     def display_rect(self):
         self.Window.fill(self.white_1)
@@ -160,5 +155,5 @@ class Screen(BruteForce):
         pygame.quit()
         sys.exit()
 
-interface = Screen()
-interface.run()
+# interface = Screen()
+# interface.run()
