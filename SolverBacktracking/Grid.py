@@ -1,11 +1,16 @@
 import os
 class Grid:
+    def __init__(self):
+        # List of _
+        self.underscore_coordinates = [] 
+
     def read_file(self,file_name):
         with open(os.path.join(file_name), 'r') as f:
             data = f.read()
         return self.convert_into_grid(data)
 
     def convert_into_grid(self, text):
+
         # Initiate a 9x9 grid 
         grid = [["_"]*9 for _ in range(9)]
         # Iterates every line of the string
@@ -14,6 +19,10 @@ class Grid:
             for j, number in enumerate(ligne):
                 if number.isdigit():
                     grid[i][j] = str(number)
+                # Add coordinates of '_'
+                elif number == "_":
+                    self.underscore_coordinates.append((i, j))
+      
         return grid
 
     def return_grid(self,file_name):
@@ -53,6 +62,12 @@ class Grid:
                     print("\033[94m" + self.grid[i][j] + "\033[0m", end=" ")
                 else:
                     print(self.grid[i][j], end=" ")
+                # if self.grid[i][j] == "_":
+                #     print("\033[94m" + self.grid[i][j] + "\033[0m", end=" ")
+                # else:
+                #     print("\033[94m" + self.grid[i][j] + "\033[0m" if (i, j) in self.underscore_coordinates else self.grid[i][j], end=" ")
+
+
                     
             print()
         print()
