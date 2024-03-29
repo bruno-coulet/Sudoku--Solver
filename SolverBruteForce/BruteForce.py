@@ -50,11 +50,13 @@ class BruteForce(SudokuSolver,Grid):
         return sudoku
     
     def begin(self,filename):
-            new_filename = 'SudokuBruteForce.txt'
             
             # Démarrez le minuteur
             self.start_time = time.time()
+
+            new_filename = 'SudokuBruteForce.txt'
             
+            self.display_grid(filename)
             self.run_solver(filename)
             self.display_grid(new_filename)
             sudoku = self.read_sudoku(new_filename)

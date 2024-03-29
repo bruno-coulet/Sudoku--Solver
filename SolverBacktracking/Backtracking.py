@@ -69,11 +69,14 @@ class Backtracking(Grid,Files):
             self.save_change('sudoku_solution.txt', sudoku)
         
     def begin(self, filename):
+
         # Démarrez le minuteur
+        self.start_time = time.time()
+
         self.display_grid(filename)
         self.run_solver(filename)
         self.display_grid('sudoku_solution.txt')
-        self.start_time = time.time()
+
         # Exécutez le solveur
         sudoku = self.read_file(filename)
         elapsed_time, result = self.solve_sudoku(sudoku)
@@ -82,8 +85,11 @@ class Backtracking(Grid,Files):
         if result:
             self.save_change('sudoku_solution.txt', sudoku)
         
+        # Arrêtez le minuteur
+        self.end_time = time.time()
+        
         # Calculez la durée écoulée
-        self.elapsed_time = elapsed_time * 1000
+        self.elapsed_time = self.end_time - self.start_time
         
         # Affichez le temps écoulé
         print("Temps écoulé pour résoudre le Sudoku: {:.3f} millisecondes".format(self.elapsed_time * 1000))

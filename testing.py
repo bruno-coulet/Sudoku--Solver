@@ -6,7 +6,7 @@ class Testing:
     '''Tests either brute force or backtracking'''
     def __init__(self):
 
-        self.algorithm_name = input('Quel méthode voulez-vous utiliser, "bruteforce" ou "backtracking" : ')
+        self.algorithm_name = input('\nQuelle méthode voulez-vous utiliser, "bruteforce" ou "backtracking" : ')
         if self.algorithm_name.lower() == 'bruteforce':
             self.solver = BruteForce()
         elif self.algorithm_name.lower() == 'backtracking':
@@ -28,7 +28,7 @@ class Testing:
         execution_times = []
 
         for grid_name in grid_names:
-            print(f"Testing de {grid_name}...")
+            print(f"\nTesting de {grid_name}...")
             file_path = os.path.join(input_folder, grid_name)
             elapsed_time = self.solver.begin(file_path)
 
