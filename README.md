@@ -1,15 +1,15 @@
 | Fichier testé | Grille testée | Temps d'exécution  |
 | -------------- | ------------- | ----------------- |
-| bruteforce  |  1.txt   | 0.007 ms |
-| bruteforce  |  2.txt   | 0.009 ms |
-| bruteforce  |  3.txt   | 0.008 ms |
-| bruteforce  |  4.txt   | 0.010 ms |
-| bruteforce  |  evilsudoku.txt   | 0.010 ms |
-| bruteforce  |  sudoku.txt   | 0.008 ms |
-| bruteforce  |  sudoku2.txt   | 0.010 ms |
-| bruteforce  |  sudoku3.txt   | 0.008 ms |
-| bruteforce  |  sudoku4.txt   | 0.009 ms |
+| backtracking  |  1.txt   | 0.000 ms |
+| backtracking  |  2.txt   | 0.000 ms |
+| backtracking  |  3.txt   | 0.000 ms |
+| backtracking  |  4.txt   | 0.000 ms |
+| backtracking  |  evilsudoku.txt   | 0.000 ms |
+| backtracking  |  sudoku.txt   | 0.000 ms |
+| backtracking  |  sudoku2.txt   | 0.000 ms |
+| backtracking  |  sudoku3.txt   | 0.000 ms |
+| backtracking  |  sudoku4.txt   | 0.000 ms |
 
-Temps le plus court : 0.007 ms
-Temps le plus long : 0.010 ms
-Temps moyen : 0.009 ms
+Temps le plus court : 0.000 ms
+Temps le plus long : 0.000 ms
+Temps moyen : 0.000 ms
