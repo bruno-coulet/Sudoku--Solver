@@ -1,4 +1,4 @@
-from Visuel.Screen import Screen
+from VisuelBacktracking.Screen import Screen
 class MainBacktracking(Screen):
     def __init__(self):
         Screen.__init__(self)

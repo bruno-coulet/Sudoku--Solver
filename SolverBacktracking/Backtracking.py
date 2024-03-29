@@ -1,5 +1,5 @@
-from Solver.Files import Files
-from Solver.Grid import Grid
+from SolverBacktracking.Files import Files
+from SolverBacktracking.Grid import Grid
 import time
 
 class Backtracking(Grid,Files):

@@ -1,8 +1,8 @@
 import pygame
 import time
 import sys
-from Solver.Backtracking import Backtracking
-from Visuel.Element import Element
+from SolverBacktracking.Backtracking import Backtracking
+from VisuelBacktracking.Element import Element
 pygame.init()
 
 class Screen(Backtracking,Element):
