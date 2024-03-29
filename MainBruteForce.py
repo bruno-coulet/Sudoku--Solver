@@ -1,4 +1,4 @@
-from Visuel.Screen import Screen
+from VisuelBruteForce.Screen import Screen
 
 class MainBruteForce(Screen):
     def __init__(self):

@@ -1,8 +1,8 @@
 import pygame
 import time
 import sys
-from Solver.BruteForce import BruteForce
-from Visuel.Element import Element
+from SolverBruteForce.BruteForce import BruteForce
+from VisuelBruteForce.Element import Element
 pygame.init()
 
 class Screen(BruteForce,Element):
