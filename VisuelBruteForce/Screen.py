@@ -16,9 +16,8 @@ class Screen(BruteForce,Element):
         self.grid_end_y = 570
         self.grid_width = self.grid_end_x - self.grid_start_x
         self.grid_height = self.grid_end_y - self.grid_start_y
-        self.start_time = 0
         self.clock = pygame.time.Clock()
-        self.grid = self.load_sudoku_grid("input/sudoku2.txt")
+        self.grid = self.load_sudoku_grid("input/1.txt")
         self.research = False
         self.font = pygame.font.SysFont("Themundayfreeversion-Regular.ttf", 40)
         pygame.display.set_caption("Sudoku")
@@ -68,23 +67,21 @@ class Screen(BruteForce,Element):
                                                self.grid_start_y + i * cell_size + (cell_size // 2 - number.get_height() // 2)))
 
     def display_result(self):
-        if self.research:
-            if self.result==True:
-                self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "Sodoku Finish", self.black, 70, 500)
-            else: 
-                self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "In progress...", self.black, 70, 500)
-        else: 
+        if self.result==True and self.research == False:
+            self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "Sodoku Finish", self.black, 70, 500)
+        elif self.research == True:
+            self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "In progress...", self.black, 70, 500)
+        elif self.elapsed_time== 0:
             self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "Sudoku empty", self.black, 70, 500)
             
     def display_time(self, time):
         self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "Time :", self.black, 70, 400)
 
         if self.start_time != 0:
-            time_str = "{:.3f}".format(time)
+            time_str = "{:.6f}".format(time)
             self.text_not_align("Themundayfreeversion-Regular.ttf", 30, time_str[:6], self.black, 80, 440)
         else:
             self.text_not_align("Themundayfreeversion-Regular.ttf", 30, "0", self.black, 80, 440)
-
 
     def run(self):
         running = True
@@ -94,28 +91,22 @@ class Screen(BruteForce,Element):
                     running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.button_solver.collidepoint(event.pos):
-                        self.start_time = time.time()
                         self.research = True
-
-            current_time = time.time()
-            elapsed_time = current_time - self.start_time
-
-
+            
             self.display_rect()
             self.display_line()
             self.display_text()
             self.display_number()
             self.display_result()
+            print(self.elapsed_time)
+            self.display_time(self.elapsed_time)
+            
 
-            self.display_time(elapsed_time)
-
-            if self.result ==  True:
-                print("end")
-                self.end_time = time.time() 
-                elapsed_time = self.end_time - self.start_time
-
+            if self.result == True:
+                self.research = False
+                
             if self.research:
-                self.begin("input/sudoku2.txt")
+                self.begin("input/1.txt")
                 self.grid = self.load_sudoku_grid("SudokuBruteForce.txt")
                 self.display_number()
 
@@ -123,6 +114,8 @@ class Screen(BruteForce,Element):
 
         pygame.quit()
         sys.exit()
+
+
 
 # interface = Screen()
 # interface.run()
