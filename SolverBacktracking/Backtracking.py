@@ -87,4 +87,4 @@ class Backtracking(Grid,Files):
         
         # Affichez le temps écoulé
         print("Temps écoulé pour résoudre le Sudoku:", self.elapsed_time, "millisecondes")
-        
+        return self.elapsed_time
