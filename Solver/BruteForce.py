@@ -1,6 +1,6 @@
 import os
-from SudokuSolver import SudokuSolver
-from Grid import Grid
+from Solver.SudokuSolver import SudokuSolver
+from Solver.Grid import Grid
 
 class BruteForce(SudokuSolver,Grid):
     def __init__(self):
