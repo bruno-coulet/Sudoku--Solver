@@ -1,33 +1,29 @@
 import pygame
 import time
 import sys
-from Solver.Backtracking import Backtracking
+from Solver.BruteForce import BruteForce
 from Visuel.Element import Element
 pygame.init()
 
-class Screen(Backtracking,Element):
+class Screen(BruteForce,Element):
     def __init__(self):
-        Backtracking.__init__(self)
+        BruteForce.__init__(self)
         Element.__init__(self)
-
-        self.start_time = 0
-        self.research = False
+        
         self.grid_start_x = 360
         self.grid_start_y = 130
         self.grid_end_x = 805
         self.grid_end_y = 570
         self.grid_width = self.grid_end_x - self.grid_start_x
         self.grid_height = self.grid_end_y - self.grid_start_y
-
-        # self.result = False
+        self.start_time = 0
         self.clock = pygame.time.Clock()
         self.file = "input/sudoku.txt"
         self.elapsed_time = 0
         self.grid = self.read_file(self.file)
         self.font = pygame.font.SysFont("Themundayfreeversion-Regular.ttf", 40)
         pygame.display.set_caption("Sudoku")
-
-
+        
         
     def display_rect(self):
         self.Window.fill(self.white_1)
