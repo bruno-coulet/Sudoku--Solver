@@ -28,6 +28,10 @@ class Grid:
                 if j % 3 == 0 and j != 0:
                     print("|", end=" ")
                 # Display the number in the grid
+                if self.grid[i][j] == "_":
+                    print("\033[94m" + self.grid[i][j] + "\033[0m", end=" ")
+                else:
+                    print(self.grid[i][j], end=" ")
 
                 return self.grid[i][j]
             print()
@@ -45,8 +49,10 @@ class Grid:
                 if j % 3 == 0 and j != 0:
                     print("|", end=" ")
                 # Display the number in the grid
-
-                print(self.grid[i][j], end=" ")
-                
+                if self.grid[i][j] == "_":
+                    print("\033[94m" + self.grid[i][j] + "\033[0m", end=" ")
+                else:
+                    print(self.grid[i][j], end=" ")
+                    
             print()
         print()
