@@ -30,12 +30,13 @@ class Testing:
         for grid_name in grid_names:
             print(f"Testing de {grid_name}...")
             file_path = os.path.join(input_folder, grid_name)
-            execution_time = self.solver.begin(file_path)
+            elapsed_time = self.solver.begin(file_path)
+            print (elapsed_time)
             # Update table with current execution stats
-            table += f"| {self.algorithm_name}  |  {grid_name}   | {execution_time:.3f} ms |\n"
+            table += f"| {self.algorithm_name}  |  {grid_name}   | {elapsed_time:.3f} ms |\n"
                         
-            if execution_time is not None:
-                execution_times.append(execution_time)
+            if elapsed_time is not None:
+                execution_times.append(elapsed_time)
 
             # if None:
             #     print(f"Pas de solution trouvée pour {grid_name}.\n")

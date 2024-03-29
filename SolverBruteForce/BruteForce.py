@@ -144,4 +144,5 @@ class BruteForce(SudokuSolver,Grid):
             
             # Affichez le temps écoulé
             print("Temps écoulé pour résoudre le Sudoku:", self.elapsed_time, "secondes")
-            return self.elapsed_time,self.start_time
+            # return self.elapsed_time,self.start_time
+            return self.elapsed_time
