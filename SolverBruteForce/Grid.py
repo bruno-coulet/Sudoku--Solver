@@ -7,10 +7,6 @@ class Grid:
             data = f.read()
         return self.convert_into_grid(data)
 
-    '''Converti le fichier .txt en chaine de caractères
-    arg : str
-    returns : la grille (liste de listes)
-    '''
     def convert_into_grid(self, text):
         # Initiate a 9x9 grid filled with zeros
         grid = [[0]*9 for _ in range(9)]

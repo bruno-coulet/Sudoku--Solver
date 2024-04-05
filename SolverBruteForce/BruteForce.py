@@ -51,7 +51,7 @@ class BruteForce(SudokuSolver,Grid):
     
     def begin(self,filename):
             
-            # Démarrez le minuteur
+            # Begin Time
             self.start_time = time.time()
 
             new_filename = 'SudokuBruteForce.txt'
@@ -62,13 +62,11 @@ class BruteForce(SudokuSolver,Grid):
             sudoku = self.read_sudoku(new_filename)
             self.result = bool(self.verification(sudoku))
             
-            # Arrêtez le minuteur
+            # Stop Time
             self.end_time = time.time()
             
-            # Calculez la durée écoulée
             self.elapsed_time = self.end_time - self.start_time
-            
-            # Affichez le temps écoulé
-            print("Temps écoulé pour résoudre le Sudoku: {:.3f} millisecondes".format(self.elapsed_time * 1000))
+
+            print("Time: {:.3f}".format(self.elapsed_time * 1000))
 
             return self.elapsed_time
