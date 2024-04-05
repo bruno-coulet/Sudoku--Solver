@@ -33,7 +33,7 @@ class Testing:
             elapsed_time = self.solver.begin(file_path)
 
             # Update table with current execution stats
-            table += f"| {self.algorithm_name}  |  {grid_name}   | {elapsed_time:.3f} ms |\n"
+            table += f"| {self.algorithm_name}  |  {grid_name}   | {(elapsed_time * 1000):.3f} ms |\n"
                         
             if elapsed_time is not None:
                 execution_times.append(elapsed_time)
@@ -48,9 +48,9 @@ class Testing:
             average_time = statistics.mean(execution_times)
 
             # Update the markdown table with the final results
-            table += f"\nTemps le plus court : {minimum_time:.3f} ms\n"
-            table += f"Temps le plus long : {maximum_time:.3f} ms\n"
-            table += f"Temps moyen : {average_time:.3f} ms\n"
+            table += f"\nTemps le plus court : {(minimum_time * 1000):.3f} ms\n"
+            table += f"Temps le plus long : {(maximum_time * 1000):.3f} ms\n"
+            table += f"Temps moyen : {(average_time * 1000):.3f} ms\n"
 
         print(table)
         return table
